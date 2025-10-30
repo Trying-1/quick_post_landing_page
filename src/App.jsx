@@ -59,10 +59,10 @@ function App() {
   // Example images - add your images to src/assets/ folder
   // Format: { src: '/src/assets/example1.jpg', title: 'Example Title', category: 'Category' }
   const exampleImages = [
-    { src: '/src/assets/example_images/img1.jpg', title: 'Motivational Quote', category: 'Inspiration' },
-    { src: '/src/assets/example_images/img2.jpg', title: 'Product Launch', category: 'Business' },
-    { src: '/src/assets/example_images/img3.jpg', title: 'Event Promo', category: 'Events' },
-    { src: '/src/assets/example_images/img4.jpg', title: 'Brand Post', category: 'Branding' },
+    { src: new URL('./assets/example_images/img1.jpg', import.meta.url).href, title: 'Motivational Quote', category: 'Inspiration' },
+    { src: new URL('./assets/example_images/img2.jpg', import.meta.url).href, title: 'Product Launch', category: 'Business' },
+    { src: new URL('./assets/example_images/img3.jpg', import.meta.url).href, title: 'Event Promo', category: 'Events' },
+    { src: new URL('./assets/example_images/img4.jpg', import.meta.url).href, title: 'Social Media Tips', category: 'Marketing' },
   ];
 
   const openLightbox = (index) => {

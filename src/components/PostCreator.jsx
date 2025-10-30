@@ -396,6 +396,21 @@ const PostCreator = () => {
 
   return (
     <div className="grid lg:grid-cols-2 gap-8 items-start">
+      {/* Canvas Preview - Mobile First */}
+      <div className="lg:hidden">
+        <div className="bg-gray-100 rounded-2xl p-4 shadow-xl">
+          <h4 className="text-lg font-bold mb-4 text-center">Preview</h4>
+          <div className="bg-white rounded-lg shadow-lg overflow-hidden mx-auto" style={{ maxWidth: '400px' }}>
+            <canvas
+              ref={canvasRef}
+              width={CANVAS_WIDTH}
+              height={CANVAS_HEIGHT}
+              className="w-full h-auto touch-none"
+            />
+          </div>
+        </div>
+      </div>
+
       {/* Controls */}
       <div className="space-y-6">
         <div>
@@ -520,8 +535,8 @@ const PostCreator = () => {
         </div>
       </div>
 
-      {/* Canvas Preview */}
-      <div className="lg:sticky lg:top-24">
+      {/* Canvas Preview - Desktop */}
+      <div className="hidden lg:block lg:sticky lg:top-24">
         <div className="bg-gray-100 rounded-2xl p-4 sm:p-6 shadow-xl">
           <h4 className="text-lg font-bold mb-4 text-center">Preview</h4>
           <div className="bg-white rounded-lg shadow-lg overflow-hidden">
