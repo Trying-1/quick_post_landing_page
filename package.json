@@ -1,6 +1,7 @@
 {
   "name": "quick-post-landing",
   "version": "1.0.0",
+  "type": "module",
   "description": "Landing page for Quick Post - Instagram/Facebook post maker app",
   "private": true,
   "scripts": {
