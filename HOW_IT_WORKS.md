@@ -165,6 +165,13 @@ npm run build
 # Everything runs in their browser!
 ```
 
+### Important URLs (HashRouter for GitHub Pages):
+- **Home**: `https://yourdomain.com/`
+- **Privacy Policy**: `https://yourdomain.com/#/privacy-policy`
+- **Account Deletion**: `https://yourdomain.com/#/account-deletion`
+
+**Note:** We use HashRouter (`#`) for client-side routing on GitHub Pages since it's static hosting without server-side routing support.
+
 ## 🎬 Summary
 
 **This is a JAMstack application:**

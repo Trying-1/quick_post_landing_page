@@ -13,17 +13,35 @@ A modern, responsive landing page for Quick Post - an Instagram/Facebook post ma
 
 ## 📄 Privacy Policy & Account Deletion
 
-### Privacy Policy
-The privacy policy is available at:
-- **Local Development**: `http://localhost:5173/#/privacy-policy`
-- **Production**: `https://quickpost.arisesolo.com/#/privacy-policy`
+### 🔗 Live URLs (for Play Console / App Store)
 
-### Account Deletion Request
-The account deletion page is available at:
-- **Local Development**: `http://localhost:5173/#/account-deletion`
-- **Production**: `https://quickpost.arisesolo.com/#/account-deletion`
+**Privacy Policy:**
+```
+https://quickpost.arisesolo.com/#/privacy-policy
+```
 
-Use these URLs when submitting your app to Google Play Console or App Store.
+**Account Deletion:**
+```
+https://quickpost.arisesolo.com/#/account-deletion
+```
+
+### 💻 Local Development URLs
+
+**Privacy Policy:**
+```
+http://localhost:5173/#/privacy-policy
+```
+
+**Account Deletion:**
+```
+http://localhost:5173/#/account-deletion
+```
+
+### ℹ️ Important Notes
+- **The `#` symbol is required** - We use HashRouter for GitHub Pages compatibility
+- These URLs work perfectly with Google Play Console and App Store
+- All pages are fully responsive and mobile-friendly
+- Contact email: arisesoloapp@gmail.com
 
 ## 🚀 Quick Start
 

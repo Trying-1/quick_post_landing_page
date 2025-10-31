@@ -13,6 +13,11 @@ npm run dev
 ```
 Visit `http://localhost:5173` to see your landing page!
 
+**Important URLs:**
+- Home: `http://localhost:5173`
+- Privacy Policy: `http://localhost:5173/#/privacy-policy`
+- Account Deletion: `http://localhost:5173/#/account-deletion`
+
 ---
 
 ## 🖼️ Adding Your Example Images
@@ -115,6 +120,13 @@ git push -u origin main
 
 4. **Auto-deploy:**
    - Every push to `main` branch automatically deploys!
+
+5. **Your Live URLs (with custom domain):**
+   - Home: `https://yourdomain.com/`
+   - Privacy Policy: `https://yourdomain.com/#/privacy-policy`
+   - Account Deletion: `https://yourdomain.com/#/account-deletion`
+   
+   **Note:** The `#` in the URL is required for GitHub Pages routing.
 
 ---
 
