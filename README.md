@@ -15,13 +15,13 @@ A modern, responsive landing page for Quick Post - an Instagram/Facebook post ma
 
 ### Privacy Policy
 The privacy policy is available at:
-- **Local Development**: `http://localhost:5173/privacy-policy`
-- **Production**: `https://quickpost.arisesolo.com/privacy-policy`
+- **Local Development**: `http://localhost:5173/#/privacy-policy`
+- **Production**: `https://quickpost.arisesolo.com/#/privacy-policy`
 
 ### Account Deletion Request
 The account deletion page is available at:
-- **Local Development**: `http://localhost:5173/account-deletion`
-- **Production**: `https://quickpost.arisesolo.com/account-deletion`
+- **Local Development**: `http://localhost:5173/#/account-deletion`
+- **Production**: `https://quickpost.arisesolo.com/#/account-deletion`
 
 Use these URLs when submitting your app to Google Play Console or App Store.
 

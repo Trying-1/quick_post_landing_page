@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Smartphone, 
-  Type, 
-  Image as ImageIcon, 
-  Zap, 
-  Download, 
-  Share2, 
-  Sparkles,
-  Instagram,
-  Facebook,
-  CheckCircle,
-  ArrowRight,
-  Menu,
-  X,
-  ChevronLeft,
-  ChevronRight
-} from 'lucide-react';
+import { Sparkles, Zap, Image as ImageIcon, Video, Download, Share2, Instagram, Facebook, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import PostCreator from './components/PostCreator';
+import './App.css';
+import img1 from './assets/example_images/img1.jpg';
+import img2 from './assets/example_images/img2.jpg';
+import img3 from './assets/example_images/img3.jpg';
+import img4 from './assets/example_images/img4.jpg';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -56,13 +45,12 @@ function App() {
     }
   ];
 
-  // Example images - add your images to src/assets/ folder
-  // Format: { src: '/src/assets/example1.jpg', title: 'Example Title', category: 'Category' }
+  // Example images
   const exampleImages = [
-    { src: new URL('./assets/example_images/img1.jpg', import.meta.url).href, title: 'Motivational Quote', category: 'Inspiration' },
-    { src: new URL('./assets/example_images/img2.jpg', import.meta.url).href, title: 'Product Launch', category: 'Business' },
-    { src: new URL('./assets/example_images/img3.jpg', import.meta.url).href, title: 'Event Promo', category: 'Events' },
-    { src: new URL('./assets/example_images/img4.jpg', import.meta.url).href, title: 'Social Media Tips', category: 'Marketing' },
+    { src: img1, title: 'Motivational Quote', category: 'Inspiration' },
+    { src: img2, title: 'Product Launch', category: 'Business' },
+    { src: img3, title: 'Event Promo', category: 'Events' },
+    { src: img4, title: 'Social Media Tips', category: 'Marketing' },
   ];
 
   const openLightbox = (index) => {
@@ -438,8 +426,8 @@ function App() {
             <div>
               <h4 className="font-bold mb-4">Legal</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="/privacy-policy" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="/account-deletion" className="hover:text-white transition">Account Deletion</a></li>
+                <li><a href="#/privacy-policy" className="hover:text-white transition">Privacy Policy</a></li>
+                <li><a href="#/account-deletion" className="hover:text-white transition">Account Deletion</a></li>
                 <li><a href="#" className="hover:text-white transition">Terms</a></li>
                 <li><a href="#" className="hover:text-white transition">License</a></li>
               </ul>
