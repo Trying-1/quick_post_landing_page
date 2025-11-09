@@ -8,7 +8,7 @@ import img3 from './assets/example_images/img3.jpg';
 import img4 from './assets/example_images/img4.jpg';
 
 // GitHub Release APK URL - Update this when you publish a new release
-const APK_DOWNLOAD_URL = 'https://github.com/Trying-1/quick_post_landing_page/releases/latest/download/quick-post.apk';
+const APK_DOWNLOAD_URL = 'https://github.com/Arise-Solo/QuickPost_apk/releases/download/1/app-release.apk';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
