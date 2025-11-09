@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Sparkles, Zap, Image as ImageIcon, Video, Download, Share2, Instagram, Facebook, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { Sparkles, Zap, Image as ImageIcon, Video, Download, Share2, Instagram, Facebook, ChevronLeft, ChevronRight, X, Smartphone, Menu, ArrowRight, CheckCircle } from 'lucide-react';
 import PostCreator from './components/PostCreator';
 import './App.css';
 import img1 from './assets/example_images/img1.jpg';
 import img2 from './assets/example_images/img2.jpg';
 import img3 from './assets/example_images/img3.jpg';
 import img4 from './assets/example_images/img4.jpg';
+
+// GitHub Release APK URL - Update this when you publish a new release
+const APK_DOWNLOAD_URL = 'https://github.com/Trying-1/quick_post_landing_page/releases/latest/download/quick-post.apk';
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -122,8 +125,11 @@ function App() {
               <a href="#try-now" className="text-gray-600 hover:text-gray-900 transition">Try Now</a>
               <a href="#examples" className="text-gray-600 hover:text-gray-900 transition">Examples</a>
               <a href="#download" className="text-gray-600 hover:text-gray-900 transition">Download</a>
-              <button className="gradient-bg text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition transform hover:scale-105">
-                Get Started
+              <button 
+                className="gradient-bg text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition transform hover:scale-105"
+                onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
+              >
+                Download APK
               </button>
             </div>
 
@@ -145,8 +151,11 @@ function App() {
               <a href="#try-now" className="block text-gray-600 hover:text-gray-900 transition">Try Now</a>
               <a href="#examples" className="block text-gray-600 hover:text-gray-900 transition">Examples</a>
               <a href="#download" className="block text-gray-600 hover:text-gray-900 transition">Download</a>
-              <button className="w-full gradient-bg text-white px-6 py-2 rounded-full font-medium">
-                Get Started
+              <button 
+                className="w-full gradient-bg text-white px-6 py-2 rounded-full font-medium"
+                onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
+              >
+                Download APK
               </button>
             </div>
           </div>
@@ -175,14 +184,28 @@ function App() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <button className="gradient-bg text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2">
-                  <Smartphone className="w-5 h-5" />
-                  <span>Download for iOS</span>
+                <button 
+                  className="gradient-bg text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
+                  onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
+                >
+                  <Download className="w-5 h-5" />
+                  <span>Download APK (Android)</span>
                 </button>
-                <button className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2">
+                <button 
+                  className="bg-gray-400 text-white px-8 py-4 rounded-full font-medium cursor-not-allowed flex items-center justify-center space-x-2"
+                  disabled
+                  title="Coming Soon"
+                >
                   <Smartphone className="w-5 h-5" />
-                  <span>Download for Android</span>
+                  <span>iOS (Coming Soon)</span>
                 </button>
+              </div>
+              
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <p className="text-sm text-blue-800">
+                  <strong>📱 Beta Testing:</strong> Download the APK directly from GitHub Releases. 
+                  The app will be available on Google Play Store soon!
+                </p>
               </div>
 
               <div className="flex items-center space-x-6 text-sm text-gray-600">
@@ -359,12 +382,18 @@ function App() {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-purple-600 px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2">
+              <button 
+                className="bg-white text-purple-600 px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
+                onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
+              >
                 <Download className="w-5 h-5" />
-                <span>Download Now</span>
+                <span>Download APK</span>
               </button>
-              <button className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2">
-                <span>View Demo</span>
+              <button 
+                className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
+                onClick={() => document.getElementById('try-now').scrollIntoView({ behavior: 'smooth' })}
+              >
+                <span>Try Web Demo</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>

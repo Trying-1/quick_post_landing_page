@@ -11,6 +11,48 @@ A modern, responsive landing page for Quick Post - an Instagram/Facebook post ma
 - 📦 Ready for custom domain deployment
 - 🖼️ Dynamic image gallery for showcasing example posts
 
+## 📱 APK Download Configuration
+
+The landing page is configured to download the Android APK directly from GitHub Releases.
+
+### Current Setup:
+- **Download Method**: Direct APK download from GitHub Releases
+- **APK URL**: Configured in `src/App.jsx` (line 11)
+- **Default URL**: `https://github.com/Trying-1/quick_post_landing_page/releases/latest/download/quick-post.apk`
+
+### How to Update APK URL:
+
+1. **Upload your APK to GitHub Releases:**
+   ```bash
+   # Create a new release on GitHub
+   # Upload your APK file (e.g., quick-post.apk)
+   ```
+
+2. **Update the URL in App.jsx:**
+   ```javascript
+   // In src/App.jsx, line 11
+   const APK_DOWNLOAD_URL = 'https://github.com/YOUR_USERNAME/YOUR_REPO/releases/latest/download/YOUR_APK_NAME.apk';
+   ```
+
+3. **Commit and deploy:**
+   ```bash
+   git add src/App.jsx
+   git commit -m "Update APK download URL"
+   git push
+   ```
+
+### Download Buttons:
+- **Hero Section**: Primary download button
+- **Navigation**: Quick access download button
+- **CTA Section**: Call-to-action download button
+- All buttons trigger direct APK download in a new tab
+
+### Future Play Store:
+When your app is published on Google Play Store, simply update the `APK_DOWNLOAD_URL` to your Play Store link:
+```javascript
+const APK_DOWNLOAD_URL = 'https://play.google.com/store/apps/details?id=your.package.name';
+```
+
 ## 📄 Privacy Policy & Account Deletion
 
 ### 🔗 Live URLs (for Play Console / App Store)
