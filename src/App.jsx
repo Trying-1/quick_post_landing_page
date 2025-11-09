@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, Zap, Image as ImageIcon, Video, Download, Share2, Instagram, Facebook, ChevronLeft, ChevronRight, X, Smartphone, Menu, ArrowRight, CheckCircle } from 'lucide-react';
+import { Sparkles, Zap, Image as ImageIcon, Video, Download, Share2, Instagram, Facebook, ChevronLeft, ChevronRight, X, Smartphone, Menu, ArrowRight, CheckCircle, Type } from 'lucide-react';
 import PostCreator from './components/PostCreator';
 import './App.css';
 import img1 from './assets/example_images/img1.jpg';
