@@ -493,7 +493,7 @@ const PostCreator = () => {
             </button>
           </div>
 
-          {/* Download Buttons */}
+          {/* Download Button */}
           <div className="grid grid-cols-1 gap-3">
             <button
               onClick={downloadImage}
@@ -503,35 +503,10 @@ const PostCreator = () => {
               <Download className="w-5 h-5" />
               <span>Download Image (PNG)</span>
             </button>
-
-            <button
-              onClick={exportVideo}
-              disabled={isRecording || !ffmpegLoaded}
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg active:scale-95 transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Video className="w-5 h-5" />
-              <span>
-                {!ffmpegLoaded ? 'Loading Encoder...' : isRecording ? 'Creating Video...' : 'Export as MP4 (8s)'}
-              </span>
-            </button>
-
-            {/* Progress Bar */}
-            {isRecording && (
-              <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-                <div 
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 h-full transition-all duration-100"
-                  style={{ width: `${recordingProgress}%` }}
-                />
-              </div>
-            )}
           </div>
 
           {/* Info */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <p className="text-sm text-blue-800">
-              <strong>Perfect for Instagram!</strong> Image: 1080x1350px. Video: 8 seconds with fade in/out effects.
-            </p>
-          </div>
+          
         </div>
       </div>
 
@@ -548,9 +523,6 @@ const PostCreator = () => {
               style={{ maxHeight: '70vh' }}
             />
           </div>
-          <p className="text-center text-xs sm:text-sm text-gray-500 mt-4">
-            1080 × 1350 pixels (Instagram Portrait)
-          </p>
         </div>
       </div>
     </div>

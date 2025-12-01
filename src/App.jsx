@@ -107,10 +107,10 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-20 md:pb-0 overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
@@ -135,7 +135,7 @@ function App() {
 
             {/* Mobile menu button */}
             <button 
-              className="md:hidden"
+              className="md:hidden p-2"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -163,95 +163,45 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="pt-28 sm:pt-32 pb-16 sm:pb-20 px-5 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-1 gap-12 items-center">
             <div>
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-50 to-purple-50 px-4 py-2 rounded-full mb-6">
                 <Sparkles className="w-4 h-4 text-purple-600" />
                 <span className="text-sm font-medium text-purple-600">Create Viral Posts in Seconds</span>
               </div>
               
-              <h1 className="text-5xl sm:text-6xl font-bold leading-tight mb-6">
-                Create Stunning
-                <span className="gradient-text"> Social Media </span>
-                Posts Instantly
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6">
+                Create quote-based
+                <span className="gradient-text"> viral Instagram </span>
+                posts
               </h1>
               
-              <p className="text-xl text-gray-600 mb-8">
-                Design beautiful Instagram and Facebook posts with text overlays. 
-                No design skills needed. Perfect for content creators, businesses, and influencers.
+              <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8">
+                These text and quote posts go viral with the right audios and minimal effort. Grow your pages, reach more people, and turn your audience into real money.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <div className="flex flex-col sm:flex-row gap-4 mb-8 items-stretch sm:items-center">
                 <button 
-                  className="gradient-bg text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
+                  className="w-full sm:w-auto gradient-bg text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
                   onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
                 >
                   <Download className="w-5 h-5" />
-                  <span>Download APK (Android)</span>
+                  <span>Download APK</span>
                 </button>
-                <button 
-                  className="bg-gray-400 text-white px-8 py-4 rounded-full font-medium cursor-not-allowed flex items-center justify-center space-x-2"
-                  disabled
-                  title="Coming Soon"
-                >
-                  <Smartphone className="w-5 h-5" />
-                  <span>iOS (Coming Soon)</span>
-                </button>
-              </div>
-              
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                <p className="text-sm text-blue-800">
-                  <strong>📱 Beta Testing:</strong> Download the APK directly from GitHub Releases. 
-                  The app will be available on Google Play Store soon!
-                </p>
-              </div>
-
-              <div className="flex items-center space-x-6 text-sm text-gray-600">
-                <div className="flex items-center space-x-2">
-                  <Instagram className="w-5 h-5 text-pink-500" />
-                  <span>Instagram Ready</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Facebook className="w-5 h-5 text-blue-600" />
-                  <span>Facebook Optimized</span>
-                </div>
               </div>
             </div>
 
-            {/* Hero Image/Mockup */}
-            <div className="relative">
-              <div className="relative z-10">
-                <div className="bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600 rounded-3xl p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition duration-300">
-                  <div className="bg-white rounded-2xl p-6 space-y-4">
-                    <div className="aspect-square bg-gradient-to-br from-orange-400 to-pink-500 rounded-xl flex items-center justify-center">
-                      <div className="text-center text-white p-8">
-                        <Type className="w-12 h-12 mx-auto mb-4" />
-                        <p className="text-2xl font-bold">Your Text Here</p>
-                        <p className="text-sm opacity-90 mt-2">Beautiful Typography</p>
-                      </div>
-                    </div>
-                    <div className="flex space-x-2">
-                      <div className="flex-1 h-12 bg-gray-100 rounded-lg"></div>
-                      <div className="flex-1 h-12 bg-gray-100 rounded-lg"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-400 rounded-full blur-2xl opacity-50 animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-400 rounded-full blur-2xl opacity-50 animate-pulse delay-75"></div>
-            </div>
+            
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      <section id="features" className="py-16 sm:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-4xl font-bold mb-4">
               Everything You Need to Create
               <span className="gradient-text"> Amazing Posts</span>
@@ -261,7 +211,7 @@ function App() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, index) => (
               <div 
                 key={index}
@@ -279,9 +229,9 @@ function App() {
       </section>
 
       {/* Try It Now Section - Interactive Post Creator */}
-      <section id="try-now" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+      <section id="try-now" className="py-16 sm:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-pink-50 to-purple-50 px-4 py-2 rounded-full mb-6">
               <Sparkles className="w-4 h-4 text-purple-600" />
               <span className="text-sm font-medium text-purple-600">Try It Free - No Sign Up Required</span>
@@ -301,9 +251,9 @@ function App() {
 
       {/* Example Gallery Section */}
       {exampleImages.length > 0 && (
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+        <section className="py-16 sm:py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+            <div className="text-center mb-12 sm:mb-16">
               <h2 className="text-4xl font-bold mb-4">
                 See What You Can
                 <span className="gradient-text"> Create</span>
@@ -313,7 +263,7 @@ function App() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {exampleImages.map((image, index) => (
                 <div 
                   key={index}
@@ -342,7 +292,7 @@ function App() {
 
       {/* Examples Section */}
       <section id="examples" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold mb-4">
               Perfect For
@@ -370,55 +320,9 @@ function App() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="download" className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="gradient-bg rounded-3xl p-12 shadow-2xl">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Ready to Create Amazing Posts?
-            </h2>
-            <p className="text-xl text-white/90 mb-8">
-              Join thousands of creators who are already making stunning social media content
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                className="bg-white text-purple-600 px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
-                onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
-              >
-                <Download className="w-5 h-5" />
-                <span>Download APK</span>
-              </button>
-              <button 
-                className="bg-gray-900 text-white px-8 py-4 rounded-full font-medium hover:shadow-xl transition transform hover:scale-105 flex items-center justify-center space-x-2"
-                onClick={() => document.getElementById('try-now').scrollIntoView({ behavior: 'smooth' })}
-              >
-                <span>Try Web Demo</span>
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="mt-8 flex items-center justify-center space-x-8 text-white/80 text-sm">
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>Free to Download</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>No Watermarks</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <CheckCircle className="w-5 h-5" />
-                <span>Unlimited Exports</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <footer className="bg-gray-900 text-white py-10 sm:py-12">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
@@ -455,8 +359,8 @@ function App() {
             <div>
               <h4 className="font-bold mb-4">Legal</h4>
               <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#/privacy-policy" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#/account-deletion" className="hover:text-white transition">Account Deletion</a></li>
+                <li><a href="/privacy-policy" className="hover:text-white transition">Privacy Policy</a></li>
+                <li><a href="/account-deletion" className="hover:text-white transition">Account Deletion</a></li>
                 <li><a href="#" className="hover:text-white transition">Terms</a></li>
                 <li><a href="#" className="hover:text-white transition">License</a></li>
               </ul>
@@ -468,14 +372,8 @@ function App() {
               © 2025 Quick Post. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white transition">
+              <a href="https://www.instagram.com/quick.post.app" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition">
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition">
-                <Share2 className="w-5 h-5" />
               </a>
             </div>
           </div>
@@ -552,6 +450,17 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Mobile Sticky Download Bar */}
+      <div className="fixed bottom-0 inset-x-0 z-40 bg-white/95 border-t border-gray-200 px-5 py-3 shadow-lg md:hidden">
+        <button
+          onClick={() => window.open(APK_DOWNLOAD_URL, '_blank')}
+          className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-full font-medium flex items-center justify-center space-x-2 active:scale-95 transition"
+        >
+          <Download className="w-5 h-5" />
+          <span>Download APK</span>
+        </button>
+      </div>
     </div>
   );
 }
