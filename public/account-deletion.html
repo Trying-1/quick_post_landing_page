@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Post – Account Deletion Request</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        background-color: #f9fafb;
+        color: #1f2937;
+        line-height: 1.6;
+      }
+      header {
+        background-color: white;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      header .container {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+      }
+      header a {
+        color: #9333ea;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      header a:hover {
+        color: #7e22ce;
+      }
+      main {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+      }
+      .card {
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+      .title-section {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .title-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+        background: linear-gradient(to right, #dbeafe, #f3e8ff);
+        border-radius: 9999px;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+      .title-section h1 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      .title-section p {
+        color: #4b5563;
+      }
+      .notice-box {
+        background-color: #eff6ff;
+        border-left: 4px solid #3b82f6;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 0.5rem;
+      }
+      .notice-box h2 {
+        color: #1e3a8a;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      .notice-box p {
+        color: #1e40af;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      section h2 {
+        font-size: 1.875rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      section h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+      section p {
+        color: #374151;
+        margin-bottom: 1rem;
+      }
+      section ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      section li {
+        margin-bottom: 0.5rem;
+        color: #374151;
+      }
+      section ol {
+        list-style: decimal;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      section ol li {
+        margin-bottom: 0.5rem;
+      }
+      .highlight-box {
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .highlight-box.blue {
+        background-color: #eff6ff;
+      }
+      .highlight-box.blue h3 {
+        color: #1e3a8a;
+      }
+      .highlight-box.blue ul li {
+        color: #1e40af;
+        font-size: 0.875rem;
+      }
+      .highlight-box.purple {
+        background-color: #faf5ff;
+      }
+      .highlight-box.purple p {
+        color: #581c87;
+      }
+      .highlight-box.purple ul li {
+        color: #6b21a8;
+        font-size: 0.875rem;
+      }
+      .highlight-box.yellow {
+        background-color: #fefce8;
+        border-left: 4px solid #eab308;
+      }
+      .highlight-box.yellow p {
+        color: #713f12;
+        font-size: 0.875rem;
+      }
+      .option-box {
+        background-color: white;
+        border: 1px solid #e5e7eb;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .option-box h3 {
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+      .option-box h3::before {
+        content: '✓';
+        color: #16a34a;
+        font-weight: bold;
+        margin-right: 0.5rem;
+        font-size: 1.25rem;
+      }
+      .option-box p {
+        color: #374151;
+        font-size: 0.875rem;
+      }
+      .option-box ol {
+        margin-top: 0.75rem;
+      }
+      .option-box ol li {
+        color: #4b5563;
+        font-size: 0.875rem;
+      }
+      .option-box .note {
+        color: #4b5563;
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
+      .gradient-box {
+        background: linear-gradient(to right, #faf5ff, #eff6ff);
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .gradient-box h3 {
+        color: #1f2937;
+        margin-bottom: 0.75rem;
+      }
+      .gradient-box ol {
+        margin-bottom: 0;
+      }
+      .gradient-box ol li {
+        color: #374151;
+        margin-bottom: 0.75rem;
+      }
+      .gradient-box a {
+        color: #9333ea;
+        text-decoration: none;
+      }
+      .gradient-box a:hover {
+        color: #7e22ce;
+      }
+      .summary-box {
+        background: linear-gradient(to right, #f0fdf4, #eff6ff);
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        margin-top: 3rem;
+      }
+      .summary-box h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      .summary-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .summary-item::before {
+        content: '✓';
+        color: #16a34a;
+        font-weight: bold;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+      }
+      .summary-item-title {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .summary-item-desc {
+        font-size: 0.875rem;
+        color: #4b5563;
+      }
+      .summary-box p:last-child {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #374151;
+        font-style: italic;
+      }
+      footer {
+        background-color: white;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 3rem;
+      }
+      footer .container {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        color: #4b5563;
+      }
+      .contact-box {
+        background-color: #f9fafb;
+        padding: 1.25rem;
+        border-radius: 0.5rem;
+      }
+      .contact-box p {
+        margin-bottom: 0.5rem;
+      }
+      .contact-box a {
+        color: #9333ea;
+        text-decoration: none;
+      }
+      .contact-box a:hover {
+        color: #7e22ce;
+      }
+      .related-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #9333ea;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .related-link:hover {
+        color: #7e22ce;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="/">← Back to Home</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <div class="title-section">
+          <div class="title-icon">🗑️</div>
+          <h1>Account Deletion Request</h1>
+          <p>Quick Post - Data Deletion Information</p>
+        </div>
+
+        <div class="notice-box">
+          <h2>ℹ️ Current Status</h2>
+          <p>Quick Post currently does not require account creation and does not collect personal data. All data is stored locally on your device. If account features are added in the future, this page will be updated with account deletion instructions.</p>
+        </div>
+
+        <section>
+          <h2>Current App Version (No Accounts)</h2>
+          <p>Quick Post is currently designed with privacy in mind and operates completely offline. The app:</p>
+          <ul>
+            <li>Does not require account creation or login</li>
+            <li>Does not collect any personal information</li>
+            <li>Does not store user data on any servers</li>
+            <li>Does not track or monitor user activity</li>
+            <li>Processes all content locally on your device</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Future Account Features</h2>
+          <p>If we introduce optional account features in the future (such as cloud backup, syncing, or premium features), we will provide clear account deletion options including:</p>
+          
+          <div class="highlight-box blue">
+            <ul>
+              <li><strong>In-App Deletion:</strong> Delete your account directly from the app settings</li>
+              <li><strong>Email Request:</strong> Request account deletion by contacting support</li>
+              <li><strong>Data Export:</strong> Download your data before deletion</li>
+              <li><strong>Confirmation:</strong> Receive confirmation when deletion is complete</li>
+              <li><strong>Timeline:</strong> Account deletion within 30 days of request</li>
+            </ul>
+          </div>
+          
+          <p><strong>Note:</strong> Any future account features will be optional. You will always be able to use Quick Post without creating an account.</p>
+        </section>
+
+        <section>
+          <h2>What Data Does the App Store?</h2>
+          <p>All data created by Quick Post is stored locally on your device only:</p>
+          
+          <div class="highlight-box blue">
+            <h3>📱 Local Device Storage</h3>
+            <ul>
+              <li>Created posts and images (saved to your gallery)</li>
+              <li>Videos you create (saved to your gallery)</li>
+              <li>App preferences and settings (stored locally)</li>
+              <li>Temporary cache files (automatically cleared)</li>
+            </ul>
+          </div>
+
+          <p><strong>Important:</strong> All this data is under your complete control and stored only on your device.</p>
+        </section>
+
+        <section>
+          <h2>How to Delete Your Data</h2>
+          <p>Since all data is stored locally on your device, you have full control to delete it at any time:</p>
+
+          <div class="option-box">
+            <h3>Option 1: Delete Individual Files</h3>
+            <p>Go to your device's gallery and delete any posts or videos created by Quick Post. They are typically saved in the "Quick Post" folder.</p>
+          </div>
+
+          <div class="option-box">
+            <h3>Option 2: Clear App Data</h3>
+            <p>Clear the app's cache and data through your device settings:</p>
+            <ol>
+              <li>Go to Settings → Apps → Quick Post</li>
+              <li>Tap "Storage"</li>
+              <li>Tap "Clear Data" and "Clear Cache"</li>
+            </ol>
+            <p class="note"><strong>Note:</strong> This will reset app preferences but won't delete files saved to your gallery.</p>
+          </div>
+
+          <div class="option-box">
+            <h3>Option 3: Uninstall the App</h3>
+            <p>Uninstalling Quick Post will remove:</p>
+            <ul>
+              <li>The app and all its components</li>
+              <li>App settings and preferences</li>
+              <li>Temporary cache files</li>
+            </ul>
+            <p class="note"><strong>Note:</strong> Files saved to your gallery will remain unless you delete them manually.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>No Server-Side Data</h2>
+          <div class="highlight-box purple">
+            <p><strong>We want to emphasize:</strong></p>
+            <ul>
+              <li>Quick Post does not have any servers or databases</li>
+              <li>No user data is ever transmitted from your device</li>
+              <li>There are no accounts, profiles, or user records to delete</li>
+              <li>We cannot access, view, or delete your local files</li>
+              <li>You have complete control over all your data</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Request Account Deletion (Future)</h2>
+          <p>When account features become available, you will be able to request account deletion by:</p>
+          
+          <div class="gradient-box">
+            <h3>Deletion Request Methods:</h3>
+            <ol>
+              <li><strong>In-App:</strong> Go to Settings → Account → Delete Account</li>
+              <li><strong>Email:</strong> Send a deletion request to <a href="mailto:arisesoloapp@gmail.com?subject=Account%20Deletion%20Request">arisesoloapp@gmail.com</a> with your registered email address</li>
+              <li><strong>This Page:</strong> Use the deletion form that will be added here</li>
+            </ol>
+          </div>
+
+          <div class="highlight-box yellow">
+            <p><strong>Important:</strong> Currently, no accounts exist, so there is nothing to delete. This section will be activated when account features are launched.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Contact Support</h2>
+          <p>If you have any questions about data deletion, privacy, or future account features, please contact us:</p>
+          <div class="contact-box">
+            <p><strong>Email Support</strong></p>
+            <p><a href="mailto:arisesoloapp@gmail.com">arisesoloapp@gmail.com</a></p>
+            <p style="margin-top: 0.75rem; font-size: 0.875rem;">We typically respond within 24-48 hours.</p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Related Information</h2>
+          <p>For more details about how Quick Post handles your data, please see:</p>
+          <a href="/privacy-policy.html" class="related-link">🛡️ Privacy Policy</a>
+        </section>
+
+        <div class="summary-box">
+          <h3>Summary</h3>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div>
+                <div class="summary-item-title">No Accounts</div>
+                <div class="summary-item-desc">No login or registration required</div>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div>
+                <div class="summary-item-title">No Data Collection</div>
+                <div class="summary-item-desc">Zero personal data collected</div>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div>
+                <div class="summary-item-title">Local Storage Only</div>
+                <div class="summary-item-desc">All data stays on your device</div>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div>
+                <div class="summary-item-title">Full Control</div>
+                <div class="summary-item-desc">Delete anytime from your device</div>
+              </div>
+            </div>
+          </div>
+          <p>Your privacy and control over your data is our top priority.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© 2025 Quick Post. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

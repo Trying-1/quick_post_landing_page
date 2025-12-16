@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Post – Privacy Policy</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+        background-color: #f9fafb;
+        color: #1f2937;
+        line-height: 1.6;
+      }
+      header {
+        background-color: white;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      header .container {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+      }
+      header a {
+        color: #9333ea;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      header a:hover {
+        color: #7e22ce;
+      }
+      main {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 3rem 1rem;
+      }
+      .card {
+        background-color: white;
+        border-radius: 1rem;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+      .title-section {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .title-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 4rem;
+        height: 4rem;
+        background: linear-gradient(to right, #f3e8ff, #fce7f3);
+        border-radius: 9999px;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+      .title-section h1 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+      .title-section p {
+        color: #4b5563;
+      }
+      .key-points {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 3rem;
+      }
+      .key-point {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+      .key-point.green {
+        background-color: #f0fdf4;
+      }
+      .key-point.blue {
+        background-color: #eff6ff;
+      }
+      .key-point.purple {
+        background-color: #faf5ff;
+      }
+      .key-point p {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .key-point.green p {
+        color: #166534;
+      }
+      .key-point.blue p {
+        color: #1e40af;
+      }
+      .key-point.purple p {
+        color: #6b21a8;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      section h2 {
+        font-size: 1.875rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      section h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+      section p {
+        color: #374151;
+        margin-bottom: 1rem;
+      }
+      section ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      section li {
+        margin-bottom: 0.5rem;
+        color: #374151;
+      }
+      .highlight-box {
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+      }
+      .highlight-box.green {
+        background-color: #f0fdf4;
+        border-left: 4px solid #22c55e;
+      }
+      .highlight-box.green p {
+        color: #166534;
+        font-weight: bold;
+      }
+      .highlight-box.blue {
+        background-color: #eff6ff;
+        border-left: 4px solid #3b82f6;
+      }
+      .highlight-box.blue h4 {
+        color: #1e3a8a;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .highlight-box.blue ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+      }
+      .highlight-box.blue li {
+        color: #1e40af;
+        font-size: 0.875rem;
+      }
+      .highlight-box.red {
+        background-color: #fef2f2;
+        border-left: 4px solid #ef4444;
+      }
+      .highlight-box.red h4 {
+        color: #7f1d1d;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .highlight-box.red li {
+        color: #991b1b;
+        font-size: 0.875rem;
+      }
+      .highlight-box.purple {
+        background-color: #faf5ff;
+        border-left: 4px solid #a855f7;
+      }
+      .highlight-box.purple h4 {
+        color: #581c87;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      .highlight-box.purple li {
+        color: #6b21a8;
+        font-size: 0.875rem;
+      }
+      code {
+        background-color: #f3f4f6;
+        padding: 0.125rem 0.5rem;
+        border-radius: 0.25rem;
+        font-family: 'Courier New', monospace;
+      }
+      .summary-box {
+        background: linear-gradient(to right, #faf5ff, #fce7f3);
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        margin-top: 3rem;
+      }
+      .summary-box h3 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.75rem;
+      }
+      .summary-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #15803d;
+      }
+      .summary-box p:last-child {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #374151;
+        font-style: italic;
+      }
+      footer {
+        background-color: white;
+        border-top: 1px solid #e5e7eb;
+        margin-top: 3rem;
+      }
+      footer .container {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 1.5rem 1rem;
+        text-align: center;
+        color: #4b5563;
+      }
+      .contact-box {
+        background-color: #f9fafb;
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
+      .contact-box p {
+        margin-bottom: 0.5rem;
+      }
+      .contact-box a {
+        color: #9333ea;
+        text-decoration: none;
+      }
+      .contact-box a:hover {
+        color: #7e22ce;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <a href="/">← Back to Home</a>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <div class="title-section">
+          <div class="title-icon">🛡️</div>
+          <h1>Privacy Policy</h1>
+          <p>Last Updated: October 30, 2025</p>
+        </div>
+
+        <div class="key-points">
+          <div class="key-point green">
+            <p>🔒 No Data Collection</p>
+          </div>
+          <div class="key-point blue">
+            <p>👁️ No Tracking</p>
+          </div>
+          <div class="key-point purple">
+            <p>📄 100% Local Processing</p>
+          </div>
+        </div>
+
+        <section>
+          <h2>Introduction</h2>
+          <p>Quick Post ("we", "our", or "the app") is committed to protecting your privacy. This Privacy Policy explains how we handle information when you use our mobile application.</p>
+        </section>
+
+        <section>
+          <h2>Information We Collect</h2>
+          <div class="highlight-box green">
+            <p>We do NOT collect any personal information.</p>
+          </div>
+          <p>Quick Post operates entirely on your device and does not:</p>
+          <ul>
+            <li>Collect personal data</li>
+            <li>Track your usage</li>
+            <li>Send data to external servers</li>
+            <li>Require account creation</li>
+            <li>Use analytics or tracking tools</li>
+            <li>Share information with third parties</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How the App Works</h2>
+          <p>Quick Post is a completely offline application that:</p>
+          <ul>
+            <li>Processes all images and videos locally on your device</li>
+            <li>Saves all content directly to your device's storage</li>
+            <li>Does not require an internet connection to function</li>
+            <li>Does not upload or transmit any data</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Permissions Used</h2>
+          <p>The app requests the following permissions solely for functionality:</p>
+          
+          <h3>Storage Permissions</h3>
+          <ul>
+            <li><strong>READ_EXTERNAL_STORAGE</strong> (Android 12 and below): To access images from your gallery</li>
+            <li><strong>WRITE_EXTERNAL_STORAGE</strong> (Android 12 and below): To save created posts and videos to your gallery</li>
+            <li><strong>READ_MEDIA_IMAGES</strong> (Android 13+): To access images from your gallery</li>
+            <li><strong>READ_MEDIA_AUDIO</strong> (Android 13+): To access audio files for video creation</li>
+          </ul>
+
+          <div class="highlight-box blue">
+            <h4>Why we need these:</h4>
+            <ul>
+              <li>To let you select images for creating posts</li>
+              <li>To save your created content to your device's gallery</li>
+              <li>To access audio files for adding to videos</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box red">
+            <h4>What we DON'T do:</h4>
+            <ul>
+              <li>We do not access any files without your explicit selection</li>
+              <li>We do not upload or share your files</li>
+              <li>We do not scan or analyze your storage</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Data Storage</h2>
+          <p>All data created by Quick Post is stored locally on your device:</p>
+          <ul>
+            <li>Created posts are saved to <code>/DCIM/Quick Post/</code> or <code>/Pictures/Quick Post/</code></li>
+            <li>Cropped images are saved to your device's gallery</li>
+            <li>Videos are saved to <code>/DCIM/Quick Post/</code></li>
+            <li>Audio files are stored in the app's local directory</li>
+          </ul>
+
+          <div class="highlight-box purple">
+            <h4>You have complete control:</h4>
+            <ul>
+              <li>You can delete any files at any time</li>
+              <li>Uninstalling the app removes all app-specific data</li>
+              <li>Your gallery content remains yours</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>Third-Party Services</h2>
+          <p>Quick Post does NOT use any third-party services, including:</p>
+          <ul>
+            <li>No analytics (Google Analytics, Firebase, etc.)</li>
+            <li>No advertising networks</li>
+            <li>No crash reporting services</li>
+            <li>No cloud storage services</li>
+            <li>No social media integrations</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Children's Privacy</h2>
+          <p>Quick Post does not knowingly collect information from children under 13. The app is safe for all ages as it does not collect any personal information.</p>
+        </section>
+
+        <section>
+          <h2>Data Security</h2>
+          <p>Since Quick Post does not collect or transmit any data:</p>
+          <ul>
+            <li>There is no data to be compromised</li>
+            <li>All processing happens locally on your device</li>
+            <li>Your content never leaves your device unless you explicitly share it</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Your Rights</h2>
+          <p>You have complete control over your data:</p>
+          <ul>
+            <li><strong>Access:</strong> All your created content is in your device's gallery</li>
+            <li><strong>Delete:</strong> You can delete any files at any time</li>
+            <li><strong>Export:</strong> All files are standard formats (PNG, JPG, MP4) that you can move or share</li>
+            <li><strong>Portability:</strong> Your content is not locked to the app</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Changes to This Privacy Policy</h2>
+          <p>We may update this Privacy Policy from time to time. Any changes will be posted in the app and on this page. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+        </section>
+
+        <section>
+          <h2>Contact Us</h2>
+          <p>If you have any questions about this Privacy Policy or Quick Post, please contact us at:</p>
+          <div class="contact-box">
+            <p><strong>Email:</strong> <a href="mailto:arisesoloapp@gmail.com">arisesoloapp@gmail.com</a></p>
+          </div>
+        </section>
+
+        <section>
+          <h2>Consent</h2>
+          <p>By using Quick Post, you consent to this Privacy Policy.</p>
+        </section>
+
+        <div class="summary-box">
+          <h3>Summary</h3>
+          <p style="margin-bottom: 1rem; font-weight: 600;">Quick Post is a privacy-first application:</p>
+          <div class="summary-grid">
+            <div class="summary-item">✅ No data collection</div>
+            <div class="summary-item">✅ No internet required</div>
+            <div class="summary-item">✅ No tracking or analytics</div>
+            <div class="summary-item">✅ All processing on your device</div>
+            <div class="summary-item">✅ Complete user control</div>
+            <div class="summary-item">✅ No third-party services</div>
+          </div>
+          <p>Your privacy is our priority. We believe your creative work should stay yours.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© 2025 Quick Post. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
