@@ -4,16 +4,25 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-slate-50 text-slate-900 antialiased;
+    font-family: 'Inter', sans-serif;
   }
 }
 
 @layer utilities {
   .gradient-text {
-    @apply bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-teal-500 via-emerald-500 to-teal-600 bg-clip-text text-transparent;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-600;
+    @apply bg-gradient-to-br from-teal-400 via-teal-500 to-emerald-600;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-glass;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(20, 184, 166, 0.3);
   }
 }

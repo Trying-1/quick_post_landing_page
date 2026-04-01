@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Download, Upload, Type as TypeIcon, Video } from 'lucide-react';
+import { Download, Upload, Type as TypeIcon, Video, AlertCircle, Check, Loader2 } from 'lucide-react';
 import { FFmpeg } from '@ffmpeg/ffmpeg';
 import { fetchFile, toBlobURL } from '@ffmpeg/util';
 
@@ -15,7 +15,6 @@ const PostCreator = () => {
   const ffmpegRef = useRef(new FFmpeg());
   const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
 
-  // Canvas dimensions
   const CANVAS_WIDTH = 1080;
   const CANVAS_HEIGHT = 1350;
   const TEXT_BOX_HEIGHT = 270;
@@ -30,17 +29,13 @@ const PostCreator = () => {
       try {
         const ffmpeg = ffmpegRef.current;
         const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm';
-        
         await ffmpeg.load({
           coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
           wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
         });
-        
         setFfmpegLoaded(true);
-        console.log('FFmpeg loaded successfully');
       } catch (error) {
         console.error('Failed to load FFmpeg:', error);
-        alert('Failed to load video encoder. Video export may not work.');
       }
     };
     loadFFmpeg();
@@ -49,27 +44,18 @@ const PostCreator = () => {
   const drawCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
-    
-    // Clear canvas
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-    // Draw text box (top 270px)
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, CANVAS_WIDTH, TEXT_BOX_HEIGHT);
-
-    // Draw text
     ctx.fillStyle = textColor;
-    ctx.font = 'bold 80px Arial, sans-serif';
+    ctx.font = 'bold 80px Inter, sans-serif';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
-    // Word wrap for long text
     const words = text.split(' ');
     const lines = [];
-    let currentLine = words[0];
-
+    let currentLine = words[0] || '';
     for (let i = 1; i < words.length; i++) {
       const testLine = currentLine + ' ' + words[i];
       const metrics = ctx.measureText(testLine);
@@ -82,54 +68,43 @@ const PostCreator = () => {
     }
     lines.push(currentLine);
 
-    // Draw each line
-    const lineHeight = 90;
+    const lineHeight = 100;
     const startY = TEXT_BOX_HEIGHT / 2 - ((lines.length - 1) * lineHeight) / 2;
     lines.forEach((line, index) => {
       ctx.fillText(line, CANVAS_WIDTH / 2, startY + index * lineHeight);
     });
 
-    // Draw image section (bottom 1080px)
     if (uploadedImage) {
       const img = new Image();
       img.onload = () => {
-        // Calculate dimensions to cover the area while maintaining aspect ratio
         const imgAspect = img.width / img.height;
         const targetAspect = CANVAS_WIDTH / IMAGE_HEIGHT;
-        
         let drawWidth, drawHeight, offsetX, offsetY;
-        
         if (imgAspect > targetAspect) {
-          // Image is wider
           drawHeight = IMAGE_HEIGHT;
           drawWidth = drawHeight * imgAspect;
           offsetX = -(drawWidth - CANVAS_WIDTH) / 2;
           offsetY = 0;
         } else {
-          // Image is taller
           drawWidth = CANVAS_WIDTH;
           drawHeight = drawWidth / imgAspect;
           offsetX = 0;
           offsetY = -(drawHeight - IMAGE_HEIGHT) / 2;
         }
-        
         ctx.drawImage(img, offsetX, TEXT_BOX_HEIGHT + offsetY, drawWidth, drawHeight);
       };
       img.src = uploadedImage;
     } else {
-      // Placeholder gradient if no image
       const gradient = ctx.createLinearGradient(0, TEXT_BOX_HEIGHT, 0, CANVAS_HEIGHT);
-      gradient.addColorStop(0, '#ec4899');
-      gradient.addColorStop(0.5, '#8b5cf6');
-      gradient.addColorStop(1, '#3b82f6');
+      gradient.addColorStop(0, '#2dd4bf');
+      gradient.addColorStop(0.5, '#14b8a6');
+      gradient.addColorStop(1, '#0d9488');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, TEXT_BOX_HEIGHT, CANVAS_WIDTH, IMAGE_HEIGHT);
-      
-      // Placeholder text
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-      ctx.font = '48px Arial';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.font = '500 48px Inter';
       ctx.textAlign = 'center';
-      ctx.fillText('Click "Upload Image" to add your photo', CANVAS_WIDTH / 2, TEXT_BOX_HEIGHT + IMAGE_HEIGHT / 2);
+      ctx.fillText('Tap "Upload Image" to stylize your niche', CANVAS_WIDTH / 2, TEXT_BOX_HEIGHT + IMAGE_HEIGHT / 2);
     }
   };
 
@@ -137,391 +112,98 @@ const PostCreator = () => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (event) => {
-        setUploadedImage(event.target.result);
-      };
+      reader.onload = (event) => setUploadedImage(event.target.result);
       reader.readAsDataURL(file);
     }
   };
 
   const downloadImage = () => {
     const canvas = canvasRef.current;
-    
-    // For mobile devices, we need to handle downloads differently
-    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-      // Convert canvas to blob for better mobile support
-      canvas.toBlob((blob) => {
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.download = 'instagram-post.png';
-        link.href = url;
-        link.click();
-        
-        // Clean up
-        setTimeout(() => URL.revokeObjectURL(url), 100);
-      }, 'image/png');
-    } else {
-      // Desktop download
-      const link = document.createElement('a');
-      link.download = 'instagram-post.png';
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    }
-  };
-
-  const drawCanvasWithOpacity = (opacity = 1, loadedImage = null) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-
-    // Set global opacity for fade effect
-    ctx.globalAlpha = opacity;
-
-    // Draw text box (top 270px)
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, CANVAS_WIDTH, TEXT_BOX_HEIGHT);
-
-    // Draw text
-    ctx.fillStyle = textColor;
-    ctx.font = 'bold 80px Arial, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    
-    // Word wrap for long text
-    const words = text.split(' ');
-    const lines = [];
-    let currentLine = words[0];
-
-    for (let i = 1; i < words.length; i++) {
-      const testLine = currentLine + ' ' + words[i];
-      const metrics = ctx.measureText(testLine);
-      if (metrics.width > CANVAS_WIDTH - 100) {
-        lines.push(currentLine);
-        currentLine = words[i];
-      } else {
-        currentLine = testLine;
-      }
-    }
-    lines.push(currentLine);
-
-    // Draw each line
-    const lineHeight = 90;
-    const startY = TEXT_BOX_HEIGHT / 2 - ((lines.length - 1) * lineHeight) / 2;
-    lines.forEach((line, index) => {
-      ctx.fillText(line, CANVAS_WIDTH / 2, startY + index * lineHeight);
-    });
-
-    // Draw image section (bottom 1080px)
-    if (loadedImage) {
-      // Use pre-loaded image for video rendering
-      const imgAspect = loadedImage.width / loadedImage.height;
-      const targetAspect = CANVAS_WIDTH / IMAGE_HEIGHT;
-      
-      let drawWidth, drawHeight, offsetX, offsetY;
-      
-      if (imgAspect > targetAspect) {
-        drawHeight = IMAGE_HEIGHT;
-        drawWidth = drawHeight * imgAspect;
-        offsetX = -(drawWidth - CANVAS_WIDTH) / 2;
-        offsetY = 0;
-      } else {
-        drawWidth = CANVAS_WIDTH;
-        drawHeight = drawWidth / imgAspect;
-        offsetX = 0;
-        offsetY = -(drawHeight - IMAGE_HEIGHT) / 2;
-      }
-      
-      ctx.drawImage(loadedImage, offsetX, TEXT_BOX_HEIGHT + offsetY, drawWidth, drawHeight);
-    } else if (uploadedImage) {
-      // For preview, load image asynchronously
-      const img = new Image();
-      img.onload = () => {
-        const imgAspect = img.width / img.height;
-        const targetAspect = CANVAS_WIDTH / IMAGE_HEIGHT;
-        
-        let drawWidth, drawHeight, offsetX, offsetY;
-        
-        if (imgAspect > targetAspect) {
-          drawHeight = IMAGE_HEIGHT;
-          drawWidth = drawHeight * imgAspect;
-          offsetX = -(drawWidth - CANVAS_WIDTH) / 2;
-          offsetY = 0;
-        } else {
-          drawWidth = CANVAS_WIDTH;
-          drawHeight = drawWidth / imgAspect;
-          offsetX = 0;
-          offsetY = -(drawHeight - IMAGE_HEIGHT) / 2;
-        }
-        
-        ctx.drawImage(img, offsetX, TEXT_BOX_HEIGHT + offsetY, drawWidth, drawHeight);
-      };
-      img.src = uploadedImage;
-    } else {
-      // Placeholder gradient if no image
-      const gradient = ctx.createLinearGradient(0, TEXT_BOX_HEIGHT, 0, CANVAS_HEIGHT);
-      gradient.addColorStop(0, '#ec4899');
-      gradient.addColorStop(0.5, '#8b5cf6');
-      gradient.addColorStop(1, '#3b82f6');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, TEXT_BOX_HEIGHT, CANVAS_WIDTH, IMAGE_HEIGHT);
-      
-      // Placeholder text
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-      ctx.font = '48px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText('Click "Upload Image" to add your photo', CANVAS_WIDTH / 2, TEXT_BOX_HEIGHT + IMAGE_HEIGHT / 2);
-    }
-
-    // Reset global alpha
-    ctx.globalAlpha = 1;
-  };
-
-  const exportVideo = async () => {
-    if (!ffmpegLoaded) {
-      alert('Video encoder is still loading. Please wait a moment and try again.');
-      return;
-    }
-
-    setIsRecording(true);
-    setRecordingProgress(0);
-
-    try {
-      // Pre-load the image if it exists
-      let loadedImage = null;
-      if (uploadedImage) {
-        loadedImage = new Image();
-        loadedImage.src = uploadedImage;
-        await new Promise((resolve) => {
-          loadedImage.onload = resolve;
-        });
-      }
-
-      const canvas = canvasRef.current;
-      const fps = 30;
-      const duration = 8; // 8 seconds
-      const totalFrames = fps * duration; // 240 frames
-      const fadeInFrames = fps * 3; // 3 second fade in (90 frames)
-      const fadeOutFrames = fps * 3; // 3 second fade out (90 frames)
-
-      // Create frames as images
-      const frames = [];
-      setRecordingProgress(5);
-
-      for (let i = 0; i < totalFrames; i++) {
-        let opacity = 1;
-
-        // Fade in (first 3 seconds) - frames 0 to 89: 0% to 100%
-        if (i < fadeInFrames) {
-          opacity = i / fadeInFrames; // Linear fade from 0 to 1
-        }
-        // Fade out (last 3 seconds) - frames 150 to 239: 100% to 0%
-        else if (i >= totalFrames - fadeOutFrames) {
-          opacity = (totalFrames - i) / fadeOutFrames; // Linear fade from 1 to 0
-        }
-
-        // Draw frame
-        drawCanvasWithOpacity(opacity, loadedImage);
-        
-        // Convert to blob
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
-        frames.push(blob);
-        
-        setRecordingProgress(5 + (i / totalFrames) * 45);
-      }
-
-      setRecordingProgress(50);
-
-      // Use FFmpeg to create MP4
-      const ffmpeg = ffmpegRef.current;
-
-      // Write frames to FFmpeg virtual filesystem
-      for (let i = 0; i < frames.length; i++) {
-        const data = await fetchFile(frames[i]);
-        await ffmpeg.writeFile(`frame${String(i).padStart(4, '0')}.png`, data);
-      }
-
-      setRecordingProgress(70);
-
-      // Convert frames to MP4 with H.264
-      await ffmpeg.exec([
-        '-framerate', '30',
-        '-i', 'frame%04d.png',
-        '-c:v', 'libx264',
-        '-pix_fmt', 'yuv420p',
-        '-t', '8',
-        '-y',
-        'output.mp4'
-      ]);
-
-      setRecordingProgress(90);
-
-      // Read the output file
-      const data = await ffmpeg.readFile('output.mp4');
-      const blob = new Blob([data.buffer], { type: 'video/mp4' });
-      const url = URL.createObjectURL(blob);
-
-      // Download
-      const link = document.createElement('a');
-      link.download = 'instagram-post-video.mp4';
-      link.href = url;
-      link.click();
-
-      // Cleanup
-      setTimeout(() => URL.revokeObjectURL(url), 100);
-      
-      // Clean up FFmpeg filesystem
-      for (let i = 0; i < frames.length; i++) {
-        await ffmpeg.deleteFile(`frame${String(i).padStart(4, '0')}.png`);
-      }
-      await ffmpeg.deleteFile('output.mp4');
-
-      setRecordingProgress(100);
-      setIsRecording(false);
-      setRecordingProgress(0);
-      
-      // Redraw canvas at full opacity
-      drawCanvas();
-    } catch (error) {
-      console.error('Video export error:', error);
-      alert('Failed to create video. Please try again.');
-      setIsRecording(false);
-      setRecordingProgress(0);
-      drawCanvas();
-    }
+    const link = document.createElement('a');
+    link.download = 'quick-post.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
   };
 
   return (
-    <div className="grid lg:grid-cols-2 gap-8 items-start">
-      {/* Canvas Preview - Mobile First */}
-      <div className="lg:hidden">
-        <div className="bg-gray-100 rounded-2xl p-4 shadow-xl">
-          <h4 className="text-lg font-bold mb-4 text-center">Preview</h4>
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden mx-auto" style={{ maxWidth: '400px' }}>
-            <canvas
-              ref={canvasRef}
-              width={CANVAS_WIDTH}
-              height={CANVAS_HEIGHT}
-              className="w-full h-auto touch-none"
-            />
-          </div>
-        </div>
-      </div>
-
+    <div className="grid lg:grid-cols-2 gap-12 items-center">
       {/* Controls */}
-      <div className="space-y-6">
-        <div>
-          <h3 className="text-2xl font-bold mb-6">Create Your Post</h3>
-          
-          {/* Text Input */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <TypeIcon className="w-4 h-4 inline mr-2" />
-              Your Text
+      <div className="space-y-8 order-2 lg:order-1">
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-sm font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+              <TypeIcon size={16} className="text-teal-500" />
+              Impactful Text
             </label>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+              className="w-full px-5 py-4 bg-white border-2 border-slate-100 rounded-2xl focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 outline-none transition-all resize-none text-lg font-medium text-slate-800"
               rows="3"
-              placeholder="Enter your text here..."
             />
           </div>
 
-          {/* Color Pickers */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Text Color
-              </label>
-              <div className="flex items-center space-x-2">
-                <input
-                  type="color"
-                  value={textColor}
-                  onChange={(e) => setTextColor(e.target.value)}
-                  className="w-12 h-12 rounded cursor-pointer border-2 border-gray-300"
-                />
-                <input
-                  type="text"
-                  value={textColor}
-                  onChange={(e) => setTextColor(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono"
-                />
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-slate-500 uppercase tracking-widest">Text Style</label>
+              <div className="flex items-center gap-3 p-3 bg-white border-2 border-slate-100 rounded-2xl">
+                <input type="color" value={textColor} onChange={(e) => setTextColor(e.target.value)} className="w-10 h-10 rounded-lg cursor-pointer border-none bg-transparent" />
+                <span className="font-mono text-xs font-bold text-slate-400 uppercase">{textColor}</span>
               </div>
             </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Background Color
-              </label>
-              <div className="flex items-center space-x-2">
-                <input
-                  type="color"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="w-12 h-12 rounded cursor-pointer border-2 border-gray-300"
-                />
-                <input
-                  type="text"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm font-mono"
-                />
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-slate-500 uppercase tracking-widest">Background</label>
+              <div className="flex items-center gap-3 p-3 bg-white border-2 border-slate-100 rounded-2xl">
+                <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} className="w-10 h-10 rounded-lg cursor-pointer border-none bg-transparent" />
+                <span className="font-mono text-xs font-bold text-slate-400 uppercase">{bgColor}</span>
               </div>
             </div>
           </div>
 
-          {/* Upload Image Button */}
-          <div className="mb-4">
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="image/*"
-              capture="environment"
-              onChange={handleImageUpload}
-              className="hidden"
-            />
+          <div className="pt-4 flex flex-col gap-4">
+            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg active:scale-95 transition flex items-center justify-center space-x-2"
+              className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all active:scale-95 shadow-xl shadow-slate-200"
             >
-              <Upload className="w-5 h-5" />
-              <span>Upload Image</span>
+              <Upload size={20} />
+              <span>Choose Your Background</span>
             </button>
-          </div>
-
-          {/* Download Button */}
-          <div className="grid grid-cols-1 gap-3">
             <button
               onClick={downloadImage}
-              disabled={isRecording}
-              className="w-full bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg active:scale-95 transition flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center gap-3 px-8 py-4 gradient-bg text-white rounded-2xl font-black text-lg hover:shadow-teal-glow transition-all active:scale-95 shadow-xl"
             >
-              <Download className="w-5 h-5" />
-              <span>Download Image (PNG)</span>
+              <Download size={22} />
+              <span>Export High-Res Image</span>
             </button>
           </div>
+        </div>
 
-          {/* Info */}
-          
+        <div className="flex items-start gap-4 p-5 bg-teal-50 rounded-2xl border border-teal-100">
+          <AlertCircle className="text-teal-600 shrink-0 mt-1" size={20} />
+          <p className="text-teal-800 font-semibold text-sm leading-relaxed">
+            The full mobile app supports batch generation, automated templates, and viral niche scheduling.
+          </p>
         </div>
       </div>
 
-      {/* Canvas Preview - Desktop */}
-      <div className="hidden lg:block lg:sticky lg:top-24">
-        <div className="bg-gray-100 rounded-2xl p-4 sm:p-6 shadow-xl">
-          <h4 className="text-lg font-bold mb-4 text-center">Preview</h4>
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <canvas
-              ref={canvasRef}
-              width={CANVAS_WIDTH}
-              height={CANVAS_HEIGHT}
-              className="w-full h-auto touch-none"
-              style={{ maxHeight: '70vh' }}
-            />
+      {/* Preview */}
+      <div className="order-1 lg:order-2">
+        <div className="relative group">
+          <div className="absolute -inset-4 bg-gradient-to-tr from-teal-500/20 to-emerald-500/20 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[3rem]" />
+          <div className="relative glass-card rounded-[2.5rem] p-4 shadow-2xl">
+            <div className="bg-slate-100 rounded-3xl overflow-hidden aspect-[1080/1350] shadow-inner relative">
+              <canvas
+                ref={canvasRef}
+                width={CANVAS_WIDTH}
+                height={CANVAS_HEIGHT}
+                className="w-full h-full object-contain"
+              />
+              <div className="absolute top-4 right-4 bg-black/20 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                <span className="text-[10px] font-black text-white uppercase tracking-widest">HD Live</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
